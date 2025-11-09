@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TikTok OAuth Callback</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; }
+  code, input { font-family: ui-monospace, Consolas, monospace; }
+  .box { padding: 16px; border: 1px solid #ddd; border-radius: 10px; }
+</style>
+<h1>TikTok authorization</h1>
+<p>Скопируйте код и отправьте его боту командой: <b>/tiktok_code ВАШ_КОД</b></p>
+<div class="box">
+  <div>code: <code id="code">—</code></div>
+  <button id="copy">Copy</button>
+</div>
+<script>
+  const params = new URLSearchParams(location.search);
+  const code = params.get('code') || '(нет code в URL)';
+  document.getElementById('code').textContent = code;
+  document.getElementById('copy').onclick = async () => {
+    try { await navigator.clipboard.writeText(code); alert('Скопировано'); }
+    catch(e){ alert('Скопируйте вручную'); }
+  };
+</script>
